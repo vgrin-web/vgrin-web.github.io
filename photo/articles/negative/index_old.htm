@@ -1,0 +1,127 @@
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1251">
+<title>Конвертирование негативного изображения в позитивное вручную</title>
+<link rel="SHORTCUT ICON" href="../photo.png"/> 
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6RQYML4P32"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6RQYML4P32');
+</script>
+<body style="color: rgb(0, 0, 0); background-color: rgb(245, 245, 245);" alink="#ff0000" link="#0000ee" vlink="#551a8b" bgproperties="fixed">
+<center><h2><font face="Comic Sans MS" color="Purple">Конвертирование негативного изображения в позитивное вручную</font></h2><br><br></center>
+<table align="center" bgcolor="#006600" cellspacing="0" cellpadding="2" border="0" frame="box">
+<tr>
+    <td>
+	<table align="center" bgcolor="#f0fff0" cellspacing="0" cellpadding="2" border="0" frame="box">
+	<tr>
+	    <td><font color="#006600" face="times new roman" size="-1">Цель: максимальный контроль за процессом сканирования негативных пленок и конвертирования негативного изображения в позитивное, включая использование цветового профиля сканера.</font></td>
+	</tr>
+	</table>
+	</td>
+</tr>
+</table>
+<br>
+<font face="Comic Sans MS" size="+1" color="Purple">Сканирование</font>
+<hr align="left" noshade width="98%">
+Сканирование проводится с гаммой равной 1 в raw формат, используемый данной программой сканирования. Для программы NikonScan таковым является файл в формате NEF. Далее NEF файл конвертируется без какой-либо коррекции в формат TIFF.
+<br><br>
+<font face="Comic Sans MS" size="+1" color="Purple">Конвертирование негатива в позитив</font>
+<hr align="left" noshade width="98%">
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td><font face="Comic Sans MS" color="Purple">- Загрузка негатива</font><br>Файл в формате TIFF загружаем в Photoshop</td>
+    <td><img src="negativ.jpg" width=581 height=377 border=0 alt="Negativ"></td>
+</tr>
+
+<tr valign="top">
+   	<td><a name="blackpoint"></a><font face="Comic Sans MS" color="Purple">- Коррекция черной точки</font><br>Данный этап зачастую именуется как &quot;вычитание маски&quot;, что не является верным определением данного процесса.
+<br>Добавляем к изображению &quot;Adjustment Layer&quot; типа Levels. Выбираем пипетку &quot;белая точка&quot; и щелкаем на неэкспонированной части кадра. Для 	увеличения точности пробы неэкспонированный участок можно предварительно &quot;размыть&quot; при помощи операции Blur. В идеале правые маркеры на канальных 	гистограмах R, G и B должны находится посередине самых правых пиков, ссответствующих неэкспонированным участкам пленки. Полученные установки слаедует сохранить, они могут быть использованы для всех кадров данной пленки сканированных с неизменной экспозицией. <br><font color="#2222ee"><b>Рекомендация</b></font>: экспозиция должна быть выбрана таковой, что бы пики, ссответствующие неэкспонированным участкам пленки, были смещены максимально вправо.
+<a href="analog_gain.htm" target="_new" name="Подробнее">Подробнее...</a>
+<!-- <a href="#blackpoint" onClick="javascript:window.open('analog_gain.htm','f1','height=700,scrollbars=1,resizable=1,status=1,menubar=0');return true">Подробнее...</a> -->
+<br><br><img src="black_point.gif" width=405 height=301 border=0 alt="black point"></td>
+    <td align="right"><img src="negativ_bp.jpg" width=581 height=377 border=0 alt="Negativ: black point"></td>
+</tr>
+
+<tr valign="top">
+	<td><font face="Comic Sans MS" color="Purple">- Инверсия негативного изображения в позитивное</font><br>Операция Invert программы Photoshop совершенно не пригодна для этой цели ибо, по сути, она является операцией вычитания и нарушает линейность изображения.
+	<table align="center" bgcolor="#f0fff0" cellspacing="0" cellpadding="2" border="0" frame="box">
+		<tr><td><font face="courier" color="#006600" size="-2">Подробнее о требованиях к функции инверсии можно ознакомится здесь: <a href="http://www.aim-dtp.net/aim/technology/sensitometry/index.htm" target="_blank">Film Sensitometry, Densities, Transmittances and scanning of them</a>. На этом же сайте описана техника конвертирования практически полностью совпадающая с данной методикой: <a href="http://www.aim-dtp.net/aim/techniques/negative_film/index.htm" target="_blank">Inverting Negative Film Using a Flatbed Scanner</a> </font></td></tr>
+	</table>
+	Для правильной инверсии мы будем использовать кривую <a href="film_negative.zip">film-negative.amp</a>, взятую с упомянутого сайта. Добавляем к изображению &quot;Adjustment Layer&quot; типа Curves, и загружаем кривую <b><i>film-negative.amp</i></b>. Теперь изображение инвертированно и линеаризовано. Можно приступать к следующему этапу.<br><br><img src="inv.gif" width=353 height=365 border=0 alt="inv"></td>
+    <td><img src="positiv.jpg" width=581 height=377 border=0 alt="Inversion"></td>
+</tr>
+
+<tr valign="top">
+    <td><a name="whitepoint"></a><font face="Comic Sans MS" color="Purple">- Баланс белого</font><br>Добавляем к изображению &quot;Adjustment Layer&quot; типа Levels. Если в изобржении есть точка, которую можно признать за максимально белую, то просто выбираем пипетку &quot;белая точка&quot; и применяем её в данной области. Но обычно такой точки нет, поэтому будем делать иначе: в каналах R, G и B сдвигаем правые ползунки влево до появления пересветов, это удобно делать удерживая кнопку Alt, затем понемногу возвращаем их вправо добиваясь нужного баланса белого и яркости самых светлых участков.<br><br><img src="wb.gif" width=405 height=301 border=0 alt="White balance"><br>После всех этих настроек слоев изображение может выглядеть несколько странно и иметь следы постеризации. Этого не следует пугаться.
+<a href="poster.htm" target="_new" name="Подробнее">Подробнее...</a>
+<!-- <a href="#whitepoint" onClick="window.open('poster.htm','f2','width=800,scrollbars=1,resizable=0,status=1,menubar=1');">Подробнее...</a> -->
+</td>
+    <td><img src="positiv_wp.jpg" width=581 height=377 border=0 alt="White balance"></td>
+</tr>
+
+<tr valign="top">
+    <td><font face="Comic Sans MS" color="Purple">- Применение профиля</font><br>Операцией &quot;Assign profile&quot; устанавливаем профиль сканера. Если у нас есть возможность построить <a href="n_9000gamma22.zip">профиль</a> самому, то строим его по it8 мишени, сканируя её с гаммой 2.2, такой профиль будет минимально влиять на яркость и только корректировать цвета. После этого шага, возможно, будет необходимо уточнить баланс белого.</td>
+    <td><img src="positiv_prof.jpg" width=581 height=377 border=0 alt="Profile"></td>
+</tr>
+
+<tr valign="top">
+    <td><font face="Comic Sans MS" color="Purple">- Установка гаммы</font><br>Это уже чистой воды искуство и о нем лучше почитать Дена Маргулиса. Я добавил слой &quot;Adjustment Layer&quot; типа Levels только в целях приведения всех изображений к одному и тому же виду.</td>
+    <td><img src="positiv_art.jpg" width=581 height=377 border=0 alt="Gamma"></td>
+</tr>
+
+</table><br>
+
+Прилагаемый <a href="positiv_art_full.zip">файл</a> является многослойным документом со всемии указанными слоями, Вы можете самостоятельно поэкспериментировать с установками коррекции.
+<br>
+<br>
+<font face="Comic Sans MS" size="+1" color="Purple">Пример сканирования програмой Vuescan</font>
+<hr align="left" noshade width="98%">
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td>Негатив, полученный после сканирования, выглядит более светлым, видимо, программа сканирования применила к нему гамму со значением от 1.8 до 2.2.</td>
+    <td><img src="vuescam_neg.jpg" width=584 height=380 border=0 alt="Vuescan negativ"></td>
+</tr>
+<tr valign="top">
+    <td>Результат обработки.</td>
+    <td><img src="vuescam.jpg" width=584 height=380 border=0 alt="Vuescan positiv"></td>
+</tr>
+<tr valign="top">
+    <td>Результат обработки с компенсирующей гаммой 0.56 ( 1/1.8 ), примененной к негативному изобржению.</td>
+    <td><img src="vuescam_restored_gamma.jpg" width=584 height=380 border=0 alt="Vueskan with restored gamma"></td>
+</tr>
+</table>
+<br>
+Прилагаемый <a href="vuescam.zip">файл</a> является многослойным документом со всемии указанными слоями собранными в две группы: с корректирующей гаммой 0.56 и без нее, Вы можете самостоятельно поэкспериментировать с установками коррекции.
+<br><br>
+<font face="Comic Sans MS" size="+1" color="Purple">Результат</font>
+<hr align="left" noshade width="98%">
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td>Сканирование с автоматическим конвертированием програмой NikonScan с гаммой 1 и последующей коррекцией гаммой 1.6.</td>
+    <td><img src="negauto.jpg" width=1161 height=753 border=0 alt="Auto"></td>
+</tr>
+<tr valign="top">
+    <td>Авторская (<b>SergT</b>) обработка кадра с автоматическим конвертированием програмой NikonScan: <i>обработанный кадр (2 скана с гаммой 2.2: + 0.04 и - 0.4, сложенные в ФШ, curves)</i>.</td>
+    <td><img src="image7.jpg" width=1161 height=753 border=0 alt="image7"></td>
+</tr>
+<tr valign="top">
+    <td>Результат по данной методике.</td>
+    <td><img src="positiv_art_full.jpg" width=1161 height=753 border=0 alt="Result"></td>
+</tr>
+</table>
+<br><br>
+Автор выражает благодарность <b>SergT</b> за предоставленные материалы. Пленка <a href="http://www.fujifilm.com/products/consumer_film/superia_reala.html" target="_blank">Fujicolor SUPERIA REALA ISO 100</a>.
+<hr align="left" noshade width="98%">
+<!---Copyright--->
+<BR>
+<P ALIGN="Center"><FONT SIZE="-2">All contents
+copyright &copy; <A HREF="https://forum.ixbt.com/users.cgi?id=email:vgrin"><b>vgrin</b></A>, first published December 8, 2005. Ver 1.11, May 13, 2009</FONT></P>
+<!---Copyright--->
+</body>
+</html>
