@@ -1,0 +1,173 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <title>Демозаик</title>
+    <meta name="keywords" content="MTF, pixels, lens">
+    <link href='http://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="../white.css" rel="stylesheet" type="text/css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6RQYML4P32"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6RQYML4P32');
+</script>
+<body>
+    <center>
+        <center><h1><font color="red" style="font-family: 'Bad Script', cursive;">Де</font><font color="green">моза</font><font color="blue">ик</font></h1></center>
+    </center>
+    <hr />
+    <h2>Методика</h2>
+    Использована методика измерений описанная в <a href="http://www.normankoren.com/Tutorials/MTF5.html" target="_blank">[1]</a>. При этом мишень фотографировалась с расстояния, обеспечивающего 150-кратное уменьшение, например для 50 мм объектива это 7.5 метров, таким образом шкала мишени соответствует диапазону 3-300 пар линий на мм(lp/mm). Мишень освещалась 400 Ваттным осветителем, направленным в потолок, что обеспечивало освещение рассеянным светом. Камеры устанавливались на штативе, спуск осуществлялся 2-х секундным таймером. Фокусировка осуществлялась вручную с брекетингом.
+    Профиль мишени измерялся программой <a href="http://rsb.info.nih.gov/ij/index.html" target="_blank">ImageJ</a>, для расчёта MTF была написана программа аналогичная скрипту из [1].
+    Эталонным объективом был выбран CZ Planar 50/1.4 ZF, поскольку он имеет, по утверждению производителя, предельное разрешение 300 lp/mm. Камера 36 мп Sony A7r.
+    Съемка велась в RAW, усиление резкости выключено, баланс белого выполнялся вручную, остальные установки по умолжанию.
+    <hr />
+    <h2>C1Pro v.8</h2>
+    Рассмотрим поведение MTF на примере конвертора C1Pro v.8, как это было сделано нами <a href="../pixels/index_r.html" target="_blank">ранее</a>.<br />
+    В работе <a href="../external/zeissmtfcurves1.pdf" target="_blank">[2]</a>, стр. 8 имеется кривая MTF для 50 мм объектива, предположительно это именно наш CZ Planar 50/1.4 ZF, на диафрагме F5.6. Кроме того, как показано в работе <a href="http://spie.org/x34358.xml" target="_blank">[3]</a>, MTF сенсора может быть описана, как MTF фильтра низкой частоты,
+    <center>MTF(f) = |SINC(fd)|</center>
+    где f - пространственная частота, d - эффективный размер пикселя. Sony A7r имеет физический размер пикселя 4.9 мкм, однако, как показано в <a href="../external/modeling%20and%20measurement%20of%20image%20sensor%20characteristics_04_04_27_34.pdf" target="_blank">[4]</a>, <a href="../external/503%20-%20digital%20imaging%20systems%20-%20one%20per%20page.pdf" target="_blank">[5]</a>, <a href="../external/fast%20mtf%20measurement%20of%20cmos%20imagers%20estribeau_303.pdf" target="_blank">[6]</a> на эффективный размер влияют как наличие байеровской интерполяции, так и форма пикселя и его фактор заполнения. Положив эффективный размер равный физическому размеру, умноженному на поправочный коэффициент k, рассчитаем MTF сенсора и совместную MTF системы объектив - сенсор.
+    <center>
+        <table>
+            <tr>
+                <th>Sony A7r, CZ Planar 50/1.4 ZF, F5.6, C1Pro v.8</th>
+            </tr>
+            <tr>
+                <td><img src="planar_50_a7r_56_c1pro_v8.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_c1v8.png" /></td>
+            </tr>
+        </table>
+    </center>
+    Наиболее близкое совпадение с экспериментом получается при k = 1.8.
+    Для удобства найдем аналитическую функцию (полином третей степени) интерполирующую MTF обьектива, это позволит нам построить более плавные кривые рассчётной результирующей MTF обьектив-сенсор.
+    <hr />
+    <h2>dcraw 9.22</h2>
+    <center>
+        <table>
+            <tr>
+                <th colspan="2">Sony A7r, CZ Planar 50/1.4 ZF, F5.6, dcraw 9.22</th>
+            </tr>
+            <tr>
+                <td colspan="2"><img src="planar_50_a7r_56_dcraw.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>dcraw -q 0 Bilinear interpolation</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_dcraw0.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>dcraw -q 1 Bilinear interpolation VNG interpolation</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_dcraw1.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>dcraw -q 2 PPG interpolation</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_dcraw2.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>dcraw -q 3 AHD interpolation</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_dcraw3.png" /></td>
+            </tr>
+        </table>
+    </center>
+    <h2>Adobe camera raw и RawTherapee-4.2.1234</h2>
+    <center>
+        <table>
+            <tr>
+                <th colspan="2">Sony A7r, CZ Planar 50/1.4 ZF, F5.6, ACR и RT</th>
+            </tr>
+            <tr>
+                <td colspan="2"><img src="planar_50_a7r_56_acr_rt.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>Adobe camera raw</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_acr.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>RT amaze, подавление фальшивых цветов максимальное (5)</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_rt_amaze.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>RT amaze, подавление фальшивых цветов минимальное (0)</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_rt_amaze_fc0.png" /></td>
+            </tr>
+        </table>
+    </center>
+    <h2>RAW</h2>
+    Картинка без демозаика, в случае "true" color каждый пиксель представлен четверкой RGBG, зеленые пиксели усреднены, в случае Red использован только красный канал RAW файла. "Эффективный" размер пикселя стал в два раза больше: 9.8 мкм.
+    <center>
+        <table>
+            <tr>
+                <th colspan="2">Sony A7r, CZ Planar 50/1.4 ZF, F5.6, RAW</th>
+            </tr>
+            <tr>
+                <td colspan="2"><img src="planar_50_a7r_56_wodemosaicing.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>"True" colors</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_full_rgb.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>Red</td>
+                <td><img src="dsc00754_cz_planar_50_7500mm_f56_red.png" /></td>
+            </tr>
+        </table>
+    </center>
+    <h2>Foveon, Sigma Dp2s</h2>
+    Поскольку мы не обладаем MTF обьектива этой камеры попробуем найти частоту, при которой наш sinc-фильтр достигает нуля. Так как у Фовеона нет демозаика, мы вправе ожидать k = 1.
+    <center>
+        <table>
+            <tr>
+                <th>Sigma Dp2s, F5.6, расстояние сьемки 2.5 м, шкала мишени соответствует диапазону 2-200 пар линий на мм</th>
+            </tr>
+            <tr>
+                <td><img src="sigma_dp2s_56.png" /></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td><img src="sdim1532_2500mm_f56.png" /></td>
+            </tr>
+        </table>
+    </center>
+    <h2>Выводы</h2>
+    Выберите конвертор на свой вкус. Фовеон, как всегда, демонстрирует не совсем то, что от него ожидают <a href="../foveon_inside/index.htm" target="_blank">[8]</a>.
+    <br />
+    Спасибо.
+    <hr />
+    <div id="reference">
+        <b>Литература:</b>
+        <ol>
+            <li><a href="http://www.normankoren.com/Tutorials/MTF5.html" target="_blank">Lens testing by Norman Koren</a></li>
+            <li><a href="../external/zeissmtfcurves1.pdf" target="_blank">How to Read MTF Curves by H. H. Nasse</a></li>
+            <li><a href="http://spie.org/x34358.xml" target="_blank">Detector Footprint Modulation Transfer Function</a></li>
+            <li><a href="../external/modeling%20and%20measurement%20of%20image%20sensor%20characteristics_04_04_27_34.pdf" target="_blank">"Modeling and Measurement of Image Sensor Characteristics" Karel FLIEGEL</a></li>
+            <li><a href="../external/503%20-%20digital%20imaging%20systems%20-%20one%20per%20page.pdf" target="_blank">Section 4 Digital Imaging Systems Sampled Imaging Systems Pixelated Imaging Systems</a></li>
+            <li><a href="../external/fast%20mtf%20measurement%20of%20cmos%20imagers%20estribeau_303.pdf" target="_blank">Fast MTF measurement of CMOS imagers using ISO 12233 slantededge methodology</a></li>
+            <li><a href="http://ultra.sdk.free.fr/docs/DxO/Image%20Sensors%20and%20Signal%20Processing%20for%20Digital%20Still%20Cameras.pdf" target="_blank">IMAGE SENSORS and SIGNAL PROCESSING for DIGITAL STILL CAMERAS</a></li>
+            <li><a href="../foveon_inside/index.htm#aliasing" target="_blank">Foveon изнутри</a></li>
+        </ol>
+    </div>
+    <hr />
+    <!---Index--->
+    <center><h2><a href="../index_r.html">Index</a></h2></center>
+    <!---Copyright--->
+    <div id="footer">
+        All contents copyright &copy; <a href="https://forum.ixbt.com/users.cgi?id=email:vgrin"><b>vgrin</b></a>, first published November 8, 2016. Ver 1.01, November 10, 2016
+    </div>
+    <!---Copyright--->
+</body>
+</html>
