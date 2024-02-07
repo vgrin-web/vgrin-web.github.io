@@ -1,0 +1,3 @@
+Macro 410/83*4000dpi=20 kdpi
+Microscope 1993*2/83*4000dpi=200 kdpi
+Grain size = 1 mkm.
