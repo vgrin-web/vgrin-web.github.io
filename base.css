@@ -1,0 +1,132 @@
+* {
+    padding: 0;
+    margin: 0;
+    vertical-align: central;
+}
+
+body {
+    font: 1em;
+    color: black;
+    background-color: #F0F0F0;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+    a:link {
+    color: #8080ff;
+    text-decoration: none;
+}
+a:visited {
+    color: #720072;
+    text-decoration: none;
+}
+a:hover {
+    color: #006699;
+    text-decoration: underline;
+}
+a:active {
+    color: #800000;
+    text-decoration: underline;
+}
+
+hr {
+    width: 50%;
+    color: #FFFFFF;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: double;
+    border-color: white;
+}
+
+h1 {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font: bold 150% "omnes-pro", "Comic Sans MS", Comic, sans-serif;
+    color: purple;
+    padding: 0px;
+}
+
+h2 {
+    margin-top: 15px;
+    margin-left: 40px;
+    font: bold 100% "omnes-pro", "Comic Sans MS", Comic, sans-serif;
+    color: purple;
+}
+
+h3 {
+    margin-left: 30px;
+    font: normal 26px "omnes-pro", Helvetica, Arial, sans-serif;
+    color: #666;
+}
+
+bold {
+    margin-left: 30px;
+    margin-right: 30px;
+    font: bold 16px "omnes-pro", "Times New Roman", Times, serif;
+    color: #666;
+    vertical-align: middle;
+    text-decoration: underline;
+}
+
+p {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+table {
+    border: 1px solid;
+    border-color: #c0c0c0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 0;
+    width: 90%;
+}
+
+th {
+    border: 1px solid #f0f0f0;
+    vertical-align: central;
+    font: italic 1.2em "omnes-pro", Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #f0f0f0;
+    vertical-align: central;
+    font: normal 1em "omnes-pro", Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+ol {
+    font: normal 0.8em "omnes-pro", Arial, Helvetica, sans-serif;
+    text-align: left;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+#footer {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+}
+
+#reference {
+    font: normal 0.8em "omnes-pro", Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    text-align: left;
+    font-size: 1em;
+    color: #202020;
+}

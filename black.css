@@ -1,0 +1,27 @@
+@import url("base.css");
+
+body {
+    color: white;
+    background-color: black;
+}
+
+h1 {
+    color: white;
+}
+
+h4 {
+    margin-left: 0px;
+    margin-right: 0px;
+    font: bold 150% "omnes-pro", "Comic Sans MS", Comic, sans-serif;
+    padding: 0px;
+}
+
+ul {
+    list-style-type: disc;
+    color: gray;
+}
+
+#reference {
+    margin-left: 50px;
+    text-align: left;
+ }
