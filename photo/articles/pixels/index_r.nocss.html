@@ -1,0 +1,447 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <title>Неразумно о пикселях</title>
+    <meta name="keywords" content="MTF, pixels, lens">
+</head>
+<body text="#000000" bgcolor="#F0F0F0" link="#8080ff" vlink="C080C0">
+    <center>
+        <center><h2><font face="Comic Sans MS" color="Purple"><font color="red">Не</font>разумно о пикселях</font></h2><br><br></center>
+    </center>
+    <p>
+        <hr width="50%" color="#FFFFFF">
+    <p>
+        Рост числа мегапикселей безусловно является тенденцией развития цифровых фотоаппаратов. Вместе с тем он так же приводит к дискуссиям о необходимости или достаточности того или иного их числа. В качестве аргумента  достаточности или даже избыточности мегапикселей в современных камерах фигурируют рассуждения как о разрешающей способности глаза, так и ограниченности современной оптики или сложности хранения больших файлов, особенно файлов RAW формата.
+        Вместе с тем увеличение частоты дискретизации является в цифровой технике надежным способом решения технических проблем и соответственного улучшения качества получаемого сигнала будь то такой одномерный сигнал, как звук или двумерный, как изображение.
+        Данная работа посвящена определению тех реальных ограничений, которые накладывает современная оптика на частоту дискретизации изображения, иными словами на число мегапикселей.
+        Для этого мы рассмотрим поведение различных объективов в сочетании с 36 мп полнокадровой камерой Sony A7r, одной из двух самых мегапиксельных камер на момент рассмотрения (январь 2015 года) и с "440 мегапиксельной полнокадровой камерой" описание которой будет дано ниже.
+        Этим данная работа отличается от большого количества источников, дающих оценки качества объективов или их сравнения между собой при помощи камер "стандартного" разрешения.
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Методика</font>
+    <p>
+        Использована методика измерений описанная в <a href="http://www.normankoren.com/Tutorials/MTF5.html" target="_blank">[1]</a>. При этом мишень фотографировалась с расстояния, обеспечивающего 150-кратное уменьшение, например для 50 мм объектива это 7.5 метров, таким образом шкала мишени соответствует диапазону 3-300 пар линий на мм(lp/mm). Мишень освещалась 400 Ваттным осветителем, направленным в потолок, что обеспечивало освещение рассеянным светом. Камеры устанавливались на штативе, спуск осуществлялся 2-х секундным таймером. Фокусировка осуществлялась вручную с брекетингом.
+        Профиль мишени измерялся программой <a href="http://rsb.info.nih.gov/ij/index.html" target="_blank">ImageJ</a>, для расчёта MTF была написана программа аналогичная скрипту из [1].
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">36 мп Sony A7r</font>
+    <p>
+        Эталонным объективом был выбран CZ Planar 50/1.4 ZF, поскольку он имеет, по утверждению производителя, предельное разрешение 300 lp/mm.
+        Ниже показаны кривые MTF на оптимальных по разрешению диафрагмах F4 и F5.6, ISO 100.
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">Sony A7r, CZ Planar 50/1.4 ZF</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_a7r_4_56.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+        Съемка велась в RAW, конвертирование в C1Pro v.8, усиление резкости выключено. Камера способна регистрировать до 100 lp/mm, что соответствует 34.5 мп разрешения конечного изображения, при больших значениях lp/mm наблюдается алиасинг. В работе <a href="../external/zeissmtfcurves1.pdf" target="_blank">[2]</a>, стр. 8 имеется кривая MTF для 50 мм объектива, предположительно это именно наш CZ Planar 50/1.4 ZF, на диафрагме F5.6. Кроме того, как показано в работе <a href="http://spie.org/x34358.xml" target="_blank">[3]</a>, MTF сенсора может быть описана, как MTF фильтра низкой частоты,
+
+        <center>MTF(f) = |SINC(fd)|</center>
+
+        где f - пространственная частота, d - эффективный размер пикселя. Sony A7r имеет физический размер пикселя 4.9 мкм, однако, как показано в <a href="../external/modeling%20and%20measurement%20of%20image%20sensor%20characteristics_04_04_27_34.pdf" target="_blank">[4]</a>, <a href="../external/503%20-%20digital%20imaging%20systems%20-%20one%20per%20page.pdf" target="_blank">[5]</a>, <a href="../external/fast%20mtf%20measurement%20of%20cmos%20imagers%20estribeau_303.pdf" target="_blank">[6]</a> на эффективный размер влияют как наличие байеровской интерполяции, так и форма пикселя и его фактор заполнения. Положив эффективный размер равный физическому размеру, умноженному на поправочный коэффициент k, рассчитаем MTF сенсора и совместную MTF системы объектив - сенсор.
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">Sony A7r, CZ Planar 50/1.4 ZF</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_a7r_56.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+        Наиболее близкое совпадение с экспериментом получается при k=1.8.
+    <p>
+        Рассмотрим вопрос влияния усиления резкости типа нерезкой маски (USM) на MTF.
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">Sony A7r, CZ Planar 50/1.4 ZF, USM</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_a7r_sharp.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Как видно USM приводит к подъему средней части кривой и оказывает крайне незначительное влияние на её высокочастотную часть. И, разумеется, USM не способно порождать детали там, где их нет.
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">"440 мегапиксельная полнокадровая камера" BenQ_GH20X</font>
+    <p>
+        В качестве камеры высокого разрешения использовалась компактная 14 мп камера BenQ_GH20X имеющая КМОП сенсор с размером пикселя 1.4 мкм.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">BenQ_GH20X</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="benq_gh20x.jpg" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        При заполнении пикселями такого размера сенсора 24х36 мм мог бы был получен 440 мп полнокадровый сенсор.
+        Сенсор был вынесен из корпуса камеры и смонтирован на металлическом держателе, с другой стороны на нем была смонтирована крышка объектива, выполнявшая функции байонета E-mount, что позволило устанавливать объективы различных систем через соответствующие адаптеры. Антиалиасинговый фильтр был удален. Общий вид конструкции показан ниже.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">BenQ_GH20X</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="dsc00766.jpg" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p><p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"></td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="dsc00770.jpg" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p><p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"></td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="dsc00768.jpg" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        К сожалению камера не имеет RAW, а так же возможности управления USM.<br>
+        Все снимки сделаны на ISO 64.<br>
+        Результаты измерений с объективом CZ Planar 50/1.4 ZF показаны ниже. Изображение кружочке имеет масштаб 200%.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">CZ Planar 50/1.4 ZF</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Как видно, на диафрагме F4, объектив способен разрешать 225 lp/mm, что соответствует 175 мп конечного изображения. Так же видно, что кривые искажены к виду, типичному для USM.
+    <p>
+        Ниже показан профиль мишени одновременно с MTF во всем диапазоне измерений и фрагмент в окрестности предельного разрешения.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"></td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_profile.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"></td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_profile_crop.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Объектив CZ Distagon 25/2.8 ZF продемонстрировал несколько более низкое разрешение - 200 lp/mm, что соответствует 138 мп.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">CZ Distagon 25/2.8 ZF</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="distagon_25.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Так же объектив Leica Summicron-M 35/2 продемонстрировал только 165 lp/mm или 94 мп. Измерения, сделанные с помощью Sony A7r, также показывают более низких ход кривой этого объектива по сравнению с объективом CZ Planar 50/1.4 ZF.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">Leica Summicron-M 35/2</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="summicron_35.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Выше шла речь исключительно об объективах с постоянным фокусным расстоянием. Однако многие фотографы предпочитают зум-объективы, каково положение дел в этой области?
+        Мы протестировали объектив Nikkor 28-80/3.5-5.6, этот объектив с пластмассовым байонетом и стоимостью около $100 поставлялся как штатный объектив с пленочной камерой Nikon F80.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">Nikkor 28-80/3.5-5.6 положение зума - 50мм</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="nikkor_28_80.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Объектив способен разрешать до 150 lp/mm, что соответствует 78 мп выходного изображения.
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Старые объективы - "Сделано в СССР"</font>
+    <p>
+        Возможно любители старых объективов не нуждаются в камерах с большим количеством пикселей?
+        Рассмотрим Индустар-50 50/3.5, это очень простой и дешевый объектив (цена в начале 80-х годов ХХ века составляла семь рублей, стоимость 2 кг сливочного масла).
+        На оптимальной диафрагме F5.6 он способен разрешить 195 lp/mm, что соответствует 131 мп.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">Индустар-50 50/3.5</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="industar_50.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Другой объектив того же времени производства - сверхширокоугольный Мир-20М 20/3.5 разрешает 135 lp/mm или 62 мп.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">Мир-20М 20/3.5</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="mir_20m.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Сравнение с расчётной кривой</font>
+    <p>
+        Попытаемся сравнить полученные MTF с расчётной кривой, как мы это делали в случае Sony A7r. К сожалению USM сильно искажает результат и сравнение довольно затруднительно, особенно в низкочастотной области. Однако в высокочастотной области можно говорить о качественном совпадении экспериментальной кривой и расчёта для пикселя с эффективным размером 1.8 * 1.4 мкм = 2.5 мкм
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"></td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_lens.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Дифракция</font>
+    <p>
+        Является ли дифракция ограничивающим фактором для данной камеры? Безусловно является.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">CZ Planar 50/1.4 ZF, пунктирные линии показывают дифракционный предел для различных значений диафрагмы для длины волны 500 нм</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_difraction.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Тем не менее только диафрагма F16 ухудшает 440 мп камеру ниже уровня 36 мп камеры Sony A7r.
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Открытые диафрагмы</font>
+    <p>
+        Открытые диафрагмы демонстрируют ожидаемое ухудшение изображеня вследствии абераций.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%">CZ Planar 50/1.4 ZF</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="50%"><img src="planar_50_open.png" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        Однако характер изменений иной по сравнению с дифракцией. Если дифракция приводит к понижению разрешения при сохранении высокого конраста, то аберации понижают контраст при сохранении достаточно высокого разрешения. Примеры подобного поведения MTF представлены в <a href="http://ultra.sdk.free.fr/docs/DxO/Image%20Sensors%20and%20Signal%20Processing%20for%20Digital%20Still%20Cameras.pdf" target="_blank">[7]</a> стр. 29, FIGURE 2.6
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Муар</font>
+    <p>
+        Будут ли давать муар другие объективы в сочетании с Sony A7r? Исходя из полученных выше предельных разрешений очевидно, что будут.
+    <p>
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#ededed" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="100%" colspan="10">Sony A7r, увеличение 200%</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="10%">CZ Planar 50/1.4 ZF, F5.6</td>
+                        <td valign="middle" align="center" width="10%">CZ Distagon 25/2.8 ZF, F5.6</td>
+                        <td valign="middle" align="center" width="10%">Leica Summicron-M 35/2, F5.6</td>
+                        <td valign="middle" align="center" width="10%">Nikkor 28-80/3.5-5.6, ~50мм, F5.6</td>
+                        <td valign="middle" align="center" width="10%">Nikkor 18-70/3.5-4.5 AF-S DX, ~50мм, F5.6</td>
+                        <td valign="middle" align="center" width="10%">Индустар-50 50/3.5, F5.6</td>
+                        <td valign="middle" align="center" width="10%">Мир-20М 20/3.5, F5.6</td>
+                        <td valign="middle" align="center" width="10%">Юпитер-9 85/2, F5.6</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center"><img src="dsc00199_planar_56_5000mm.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00210_distagon_5_6_2500mm.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00698_summicron35_3500mm_56.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00207_nikkor_28_80_50_5_6_5000mm.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00208_nikkor_18_70_50_5_6_5000mm.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00201_industar_56_5000mm.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00715_mir_20_56_2000mm.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00206_jupiter_85_5_6_8500mm2.jpg" border="0"></td>
+                    </tr>
+                </table>
+    <p>
+                <table border="1" bordercolor="#ededed" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="100%" colspan="10">Sony A7r на открытых диафрагмах, увеличение 200%</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="10%">CZ Planar 50/1.4 ZF, F2.8</td>
+                        <td valign="middle" align="center" width="10%">CZ Planar 50/1.4 ZF, F2</td>
+                        <td valign="middle" align="center" width="10%">CZ Planar 50/1.4 ZF, F1.4</td>
+                        <td valign="middle" align="center" width="10%">Leica Summicron-M 35/2, F2</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center"><img src="dsc00772_cz_planar_50_5000mm_f28.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00773_cz_planar_50_5000mm_f2.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00775_cz_planar_50_5000mm_f14.jpg" border="0"></td>
+                        <td valign="middle" align="center"><img src="dsc00776_summicron_35_5000mm_f2.jpg" border="0"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Реальный мир</font>
+    <p>
+        Последний вопрос - а можно ли это увидеть на реальном снимке или только на снимках мишеней?
+        Разумеется можно. Снимки сделаны объективом CZ Planar 50/1.4 ZF с одной и той же точки с расстояния примерно 2 метра на диафрагме F5.6.
+        <center>
+            <br><br>
+            <font face="Arial, Helvetica, sans-serif">
+                <table border="1" bordercolor="#f0f0f0" cellpadding="0" cellspacing="5">
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="100%">Sony A7r, 340%. Наведите мышку для просмотра BenQ_GH20X 100%</td>
+                    </tr>
+                    <tr border="1" bordercolor="#f0f0f0">
+                        <td valign="middle" align="center" width="100%"><img src="dsc00758.jpg" border="0" onmouseover="this.src = 'img_0598_crop.jpg'" onmouseout="    this.src = 'dsc00758.jpg'"></td>
+                    </tr>
+                </table>
+            </font><br>
+        </center>
+        Нетрудно видеть, что снимок 440 мп камеры не только имеет более высокую детализацию, но и лишен цифровых артефактов, таких как муар на блестящих деталях часов.
+    <p>
+        <hr width="50%" color="#FFFFFF">
+        <font face="Comic Sans MS" size="+1" color="Purple">Выводы</font>
+    <p>
+        Повышение мегапиксельности является совершенно нормальным ходом развития цифровых технологий. Оно позволяет избавляться от искусственновносимых в путь сигнала "аналоговых" элементов, таких как АА-фильтр, которые всегда являются компромиссом. Это повышение актуально как для сенсоров с массивом цветных фильтров, так и для сенсоров типа Фовеон, которым так же присущ алиасинг <a href="../foveon_inside/index.htm#aliasing" target="_blank">[8]</a>. Современный уровень мегапиксельности не достигает уровня оптики 30-тилетней (а по времени разработки и того более) давности и самых низких ценовых категорий. Неудивительно, что <b>все</b> эти объективы демонстрируют цветной муар с камерой Sony A7r на частотах в районе 100 lp/mm. При этом важно понимать, что конечное изображение, полученное из изображения более высокого разрешения, будет выглядеть лучше изображения из источника с разрешением равным конечному.
+    <p>
+        Спасибо.
+    <p>
+        <br><br>
+        <b>Литература:</b>
+        <dl>
+            <dt>1.<a href="http://www.normankoren.com/Tutorials/MTF5.html" target="_blank">Lens testing by Norman Koren</a><dd>
+            <dt>2.<a href="../external/zeissmtfcurves1.pdf" target="_blank">How to Read MTF Curves by H. H. Nasse</a><dd>
+            <dt>3.<a href="http://spie.org/x34358.xml" target="_blank">Detector Footprint Modulation Transfer Function</a><dd>
+            <dt>4.<a href="../external/modeling%20and%20measurement%20of%20image%20sensor%20characteristics_04_04_27_34.pdf" target="_blank">"Modeling and Measurement of Image Sensor Characteristics" Karel FLIEGEL</a><dd>
+            <dt>5.<a href="../external/503%20-%20digital%20imaging%20systems%20-%20one%20per%20page.pdf" target="_blank">Section 4 Digital Imaging Systems Sampled Imaging Systems Pixelated Imaging Systems</a><dd>
+            <dt>6.<a href="../external/fast%20mtf%20measurement%20of%20cmos%20imagers%20estribeau_303.pdf" target="_blank">Fast MTF measurement of CMOS imagers using ISO 12233 slantededge methodology</a><dd>
+            <dt>7.<a href="http://ultra.sdk.free.fr/docs/DxO/Image%20Sensors%20and%20Signal%20Processing%20for%20Digital%20Still%20Cameras.pdf" target="_blank">IMAGE SENSORS and SIGNAL PROCESSING for DIGITAL STILL CAMERAS</a><dd>
+            <dt>8.<a href="../foveon_inside/index.htm#aliasing" target="_blank">Foveon изнутри</a><dd>
+        </dl>
+        <br>
+    <p>
+        <hr width="50%" color="#FFFFFF">
+    <p>
+        <!---Index--->
+        <center><font face="Comic Sans MS" size="+1" color="Purple"><a href="../index_r.html">Index</a></font></center>
+        <!---Copyright--->
+        <br>
+    <p align="Center"><font size="-2">All contents copyright &copy; <a href="https://forum.ixbt.com/users.cgi?id=email:vgrin"><b>vgrin</b></a>, first published January 20, 2015. Ver 1.22, April 12, 2015</font></p>
+    <!---Copyright--->
+</body>
+</html>
