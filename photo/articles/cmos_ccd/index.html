@@ -1,0 +1,113 @@
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<title>Цветопередача CMOS vs. CCD</title>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6RQYML4P32"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6RQYML4P32');
+</script>
+<body style="color: rgb(0, 0, 0); background-color: rgb(245, 245, 245);" alink="#ff0000" link="#0000ee" vlink="#551a8b" bgproperties="fixed">
+<center><h2><font face="Comic Sans MS" color="Purple">Цветопередача CMOS vs. CCD</font></h2><br><br></center>
+<font face="Comic Sans MS" size="+1" color="Purple">Съемка</font>
+<br><br>
+Тестовый объект: мишень it8, канеры: Nikon D70 и Canon 20D, одинаковые чувствительность и эспопары.
+<br><br>
+<font face="Comic Sans MS" size="+1" color="Purple">RAW</font>
+<br><br>
+При помощи <a href="..\dcraw_parser.rar">RAW parser</a> разбираем RAW файлы на отдельные каналы, складываем их, получая цветное изображение с неинтерполрованными (“честными”) цветами, настраиваем равные яркости, баланс белого ( по полю GR3 ) и применяем гамму 1.5. Таким образом мы можем видеть отклик фотодиодов на сигнал без коррекции со стороны Color Management System (CMS)
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td width="10%"><b>Nikon D70</b></td>
+    <td><img src="nikond70raw.jpg" width=632 height=446 border=0 alt="RAW Nikon D70"></td>
+</tr>
+<tr valign="top">
+    <td><b>Canon 20D</b></td>
+    <td><img src="canon20draw.jpg" width=804 height=577 border=0 alt="RAW Canon 20D"></td>
+</tr>
+</table>
+<hr align="left" noshade width="98%">
+<font face="Comic Sans MS" size="+1" color="Purple">Обработка в C1Pro</font>
+<br><br>
+Настраиваем равные яркости: +0.1eV для Nikon D70, баланс белого ( по полю GR3 ), используем стандартные профили камер от C1Pro
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td width="10%"><b>Nikon D70</b></td>
+    <td><img src="nikond70c1pro.jpg" width=637 height=461 border=0 alt="C1Pro Nikon D70"></td>
+</tr>
+<tr valign="top">
+    <td><b>Canon 20D</b></td>
+    <td><img src="canon20dc1pro.jpg" width=637 height=455 border=0 alt="C1Pro Canon 20D"></td>
+</tr>
+</table>
+<hr align="left" noshade width="98%">
+<font face="Comic Sans MS" size="+1" color="Purple">Профилирование</font>
+<br><br>  
+Строим профили камер по данным файлам при помощи GretagMacbeth ProfileMaker и применяем их к файлам
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td width="10%"><b>Nikon D70</b></td>
+    <td><img src="nikond70prof.jpg" width=637 height=461 border=0 alt="Nikon D70 with profile"></td>
+</tr>
+<tr valign="top">
+    <td><b>Canon 20D</b></td>
+    <td><img src="canon20dprof.jpg" width=637 height=455 border=0 alt="Canon 20D with profile"></td>
+</tr>
+</table>
+
+<hr align="left" noshade width="98%">
+<font face="Comic Sans MS" size="+1" color="Purple">Примеры</font>
+<br><br>  
+Снимки со стандартными профилями от C1Pro, баланс белого по дальнему зданию
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td width="10%"><b>Nikon D70</b></td>
+    <td><img src="dsc7313.jpg" border=0 alt="Nikon D70 with profile"></td>
+</tr>
+<tr valign="top">
+    <td><b>Canon 20D коррекция -0.1 eV</b></td>
+    <td><img src="img_7223.jpg" border=0 alt="Canon 20D with profile"></td>
+</tr>
+</table>
+Снимки со профилями, построенными при помощи GretagMacbeth ProfileMaker, баланс белого по дальнему зданию
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td width="10%"><b>Nikon D70</b></td>
+    <td><img src="dsc7313prof.jpg" border=0 alt="Nikon D70 with profile"></td>
+</tr>
+<tr valign="top">
+    <td><b>Canon 20D коррекция -0.1 eV</b></td>
+    <td><img src="img_7223prof.jpg" border=0 alt="Canon 20D with profile"></td>
+</tr>
+</table>
+<hr align="left" noshade width="98%">
+<font face="Comic Sans MS" size="+1" color="Purple">Цветовой охват</font>
+<br><br>  
+<table cellspacing="2" cellpadding="20">
+<tr valign="top">
+    <td width="10%"><b>Цветовой охват стандартных профилей от C1Pro</b><br>Наведите мышку для просмотра в XY-координатах</td>
+    <td>
+    <img src="c1pro.png" border="0" alt="08dsc7199.jpg" onmouseover="this.src='c1pro_xy.png'" onmouseout="this.src='c1pro.png'">
+    </td>
+</tr>
+<tr valign="top">
+    <td><b>Цветовой охват профилей, построенными при помощи GretagMacbeth ProfileMaker</b><br>Наведите мышку для просмотра в XY-координатах</td>
+    <td>
+    <img src="myprof.png" border="0" alt="08dsc7199.jpg" onmouseover="this.src='myprof_xy.png'" onmouseout="this.src='myprof.png'">
+    </td>
+</tr>
+</table>
+
+<hr align="left" noshade width="98%">
+<!---Copyright--->
+<BR>
+<P ALIGN="Center"><FONT SIZE="-2">All contents
+copyright &copy; <A HREF="https://forum.ixbt.com/users.cgi?id=email:vgrin"><b>vgrin</b></A>, first published May 31, 2007. Ver 2.11, October 19, 2008</FONT></P>
+<!---Copyright--->
+</body>
+</html>
